@@ -68,7 +68,7 @@ parser.add_argument("-p","--dataset_path", default="2m")
 parser.add_argument("-n","--number", default=0, help="first number of image")
 parser.add_argument("-y","--yolo", default="yolo", help="yolo data result path")
 parser.add_argument("-r","--retrieval", default="retrieval", help="retrieval data result path")
-parser.add_argument("-e","--extension", default="png")
+parser.add_argument("-e","--extension", default="jpg")
 args = parser.parse_args()
 
 dataset_root = os.path.join(".", args.dataset_path)
@@ -94,7 +94,7 @@ else:
 header_name = ''
 # 3)시작 번호지정
 first_file = args.number
-Image_Num = first_file
+Image_Num = int(first_file)
 Image_Count = 0
 Image_Temp = 0
 # 4)이름 뒷 부분
