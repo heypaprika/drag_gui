@@ -5,7 +5,9 @@ drag_gui.py
 우선적으로 사용법은 python3 drag_gui.py -h 명령어로 확인
 
 root
+
 |-dataset
+
 |-drag_gui.py
 
 에서 python3 drag_gui.py -p "dataset"
