@@ -69,6 +69,7 @@ parser.add_argument("-n","--number", default=0, help="first number of image")
 parser.add_argument("-y","--yolo", default="yolo", help="yolo data result path")
 parser.add_argument("-r","--retrieval", default="retrieval", help="retrieval data result path")
 parser.add_argument("-e","--extension", default="jpg")
+parser.add_argument("-m","--yolo_label", default="0")
 args = parser.parse_args()
 
 dataset_root = os.path.join(".", args.dataset_path)
@@ -240,7 +241,7 @@ def on_button_release(_):
 
 
     # for text file
-    l += '0 '
+    l += args.yolo_label+' '
     l += str(center_x/width)[:8] +' '
     l += str(center_y/height)[:8] +' '
     l += str(object_width/width)[:8] +' '
