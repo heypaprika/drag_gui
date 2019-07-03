@@ -64,12 +64,12 @@ tabControl.pack(expand=1, fill="both")
 ############## init start ##############
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-p","--dataset_path", default="2m")
-parser.add_argument("-n","--number", default=0, help="first number of image")
+parser.add_argument("-p","--dataset_path", default="human")
+parser.add_argument("-n","--number", default=122217, help="first number of image")
 parser.add_argument("-y","--yolo", default="yolo", help="yolo data result path")
 parser.add_argument("-r","--retrieval", default="retrieval", help="retrieval data result path")
 parser.add_argument("-e","--extension", default="jpg")
-parser.add_argument("-m","--yolo_label", default="0")
+parser.add_argument("-m","--yolo_label", default="1")
 args = parser.parse_args()
 
 dataset_root = os.path.join(".", args.dataset_path)
@@ -92,14 +92,14 @@ else:
 
 ############################
 # 2)이름 앞 부분
-header_name = ''
+header_name = '20190422_'
 # 3)시작 번호지정
 first_file = args.number
 Image_Num = int(first_file)
 Image_Count = 0
 Image_Temp = 0
 # 4)이름 뒷 부분
-footer_name = '.'+args.extension
+footer_name = '_new.'+args.extension
 ############################
 
 # 다음 파일 인덱스 탐색 최대치 지정
@@ -283,11 +283,11 @@ def done():
     canvas.unbind("<ButtonRelease-1>")
 
     print(l)
-    with open(os.path.join(image_file_path,args.yolo,str(Image_Num) + '.txt'), 'w') as new_days:
+    with open(os.path.join(image_file_path,args.yolo,header_name+str(Image_Num)+footer_name.split('.')[0] + '.txt'), 'w') as new_days:
         new_days.write(l)
 
     l = ''
-    file_name = str(Image_Num)+footer_name
+    file_name = header_name+str(Image_Num)+footer_name
     os.rename(os.path.join(dataset_root, file_name),os.path.join(dataset_root,args.yolo,file_name))
     image_numpy = np.array(image)
     for i, bound in enumerate(boundlist):
@@ -306,7 +306,7 @@ def done():
         while True:
             Image_Num += 1
             Image_Count += 1
-            _file = os.path.join(image_file_path,str(Image_Num)+footer_name)
+            _file = os.path.join(image_file_path,header_name+str(Image_Num)+footer_name)
             # print(_file)
 
             if os.path.isfile(_file):
