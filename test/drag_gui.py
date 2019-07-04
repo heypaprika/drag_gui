@@ -293,7 +293,7 @@ def done():
     image_numpy = np.array(image)
     for i, bound in enumerate(boundlist):
         cropped_img = image_numpy[ int(bound[1]):int(bound[3]), int(bound[0]):int(bound[2])]
-        cv2.imwrite(os.path.join(dataset_root,args.retrieval,str(Image_Num)+"_"+str(i)+'.jpg'),cv2.cvtColor(cropped_img, cv2.COLOR_RGB2BGR))
+        cv2.imwrite(os.path.join(dataset_root,args.retrieval,header_name+str(Image_Num)+"_"+str(i)+'.jpg'),cv2.cvtColor(cropped_img, cv2.COLOR_RGB2BGR))
 
     boundlist = []
 
